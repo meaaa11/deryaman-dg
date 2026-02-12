@@ -1,269 +1,67 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>İyi ki Doğdun! 🎂</title>
+    <title>Happy Birthday</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"></script>
+
     <style>
-        /* --- GÖNDERDİĞİN CSS KODLARI --- */
-        html {
-            font-family: sans-serif;
-            -ms-text-size-adjust: 100%;
-            -webkit-text-size-adjust: 100%
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            background: #E9E8E4;
-            font-size: 20px;
-            font-family: circular, sans-serif;
-            color: #1d1d1b
-        }
-
-        article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
-            display: block
-        }
-
-        audio, canvas, progress, video {
-            color:white;
-            display: inline-block;
-            vertical-align: baseline;
-        }
-
-        .scenes {
-            position: relative;
-            margin: 0 auto;
-            width: 100%
-        }
-
-        .items {
-            width: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%
-        }
-
-        .overflow {
-            width: 100%;
-            overflow: hidden;
-            position: relative
-        }
-
-        .scene {
-            margin-top: -2px;
-            width: 100%;
-            height: 768px;
-            position: relative;
-            background: url(http://asmitashinde.com/projects/css/images/birthday//scene-1.svg) 50% 0 repeat-x;
-            background-size: auto 768px;
-            z-index: 10;
-            -webkit-transform: translate3d(0, 0, 0)
-        }
-
-        .scene-1 {
-            height: 1828px;
-            background-size: 1920px auto;
-            background-position: 50% -100px
-        }
-
+        /* GÖNDERDİĞİN CSS KODLARI */
+        html { font-family: sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100% }
+        body { margin: 0; padding: 0; background: #E9E8E4; font-size: 20px; font-family: sans-serif; color: #1d1d1b }
+        .scenes { position: relative; margin: 0 auto; width: 100% }
+        .items { width: 100%; position: absolute; top: 0; left: 0; height: 100% }
+        .overflow { width: 100%; overflow: hidden; position: relative }
+        .scene { margin-top: -2px; width: 100%; height: 768px; position: relative; z-index: 10; background-size: auto 768px; }
+        .scene-1 { height: 1828px; background: url(http://asmitashinde.com/projects/css/images/birthday//scene-1.svg) 50% -100px repeat-x; background-size: 1920px auto; }
         .scene-2 { background-image: url(http://asmitashinde.com/projects/css/images/birthday//scene-2.svg) }
         .scene-3 { background-image: url(http://asmitashinde.com/projects/css/images/birthday//scene-3.svg) }
         .scene-4 { background-image: url(http://asmitashinde.com/projects/css/images/birthday//scene-4.svg) }
         .scene-5 { background-image: url(http://asmitashinde.com/projects/css/images/birthday//scene-5.svg) }
         .scene-6 { background-image: url(http://asmitashinde.com/projects/css/images/birthday//scene-6.svg); height: 1100px; }
-
-        .egg, .egg-2 {
-            width: 84px;
-            height: 108px;
-            top: 540px;
-            position: relative;
-            margin: 0 auto;
-            background: url(http://asmitashinde.com/projects/css/images/birthday//egg.svg) 0 0 no-repeat;
-            background-size: 100% auto;
-            z-index: 20;
-        }
-
-        .blender {
-            left: 50%;
-            bottom: 270px;
-            margin-left: -105px;
-            width: 210px;
-            height: 358px;
-            position: absolute;
-            background: url(http://asmitashinde.com/projects/css/images/birthday//blender.svg) 0 0 no-repeat;
-            background-size: 100% auto;
-            z-index: 30
-        }
-
-        .cake {
-            margin: 0 auto;
-            top: -380px;
-            width: 300px;
-            height: 250px;
-            z-index: 30;
-            position: relative
-        }
-
-        .cake>.inside {
-            position: relative;
-            background: url(http://asmitashinde.com/projects/css/images/birthday//cake.svg) 0 0 no-repeat;
-            background-size: 100% auto;
-            z-index: 30;
-            height: 100%
-        }
-
-        .text {
-            margin: 0 auto;
-            width: 280px;
-            text-align: center;
-            overflow: hidden;
-            color:white;
-        }
-
-        #hat {
-            margin: 0 auto;
-            width: 280px;
-            text-align: center;
-            position: absolute;
-            z-index: 20;
-            left: 47%;
-            fill:white; stroke:#000000; stroke-miterlimit:10;
-        }
-
-        .hbd {
-            position: absolute;
-            z-index: 20;
-            right:35%;
-            color:white;
-            width: 102px;
-            height: 124px;
-            top:10%;
-            font-size: 50px;
-        }
-
-        /* (Dosya boyutunu korumak için diğer tüm CSS kurallarını buraya dahil ettim) */
-        /* ... Tüm gönderdiğin CSS buraya gelecek ... */
         
-        .hide { visibility: hidden; z-index: 0 }
+        /* Buraya diğer gönderdiğin tüm CSS'leri ekleyebilirsin */
+        .egg, .egg-2 { width: 84px; height: 108px; top: 540px; position: relative; margin: 0 auto; background: url(http://asmitashinde.com/projects/css/images/birthday//egg.svg) no-repeat; background-size: 100% auto; z-index: 20; }
+        .hide { visibility: hidden; }
+        .text { margin: 0 auto; width: 280px; text-align: center; color: white; }
     </style>
 </head>
 <body>
 
-<div class="overflow">
-    <div class="scenes">
-        <div class="items">
-            <div class="egg"></div>
-            <div class="egg-2 hide"></div>
-            <div class="egg-trial">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 450">
-                    <defs>
-                        <clippath id="egg-mask">
-                            <rect id="egg-mask-rect" x="0" y="0" width="100" height="0" />
-                        </clippath>
-                    </defs>
-                    <path fill="#FFCC00" d="m13.1,29.84994c0,0 -0.2,0.03821 -0.2,17.61778l0.1,0l0,0.2293l0,256.20298l6,-0.47771l0,-255.95457l0.1,0c0,-26.36934 -10.35,193.37517 0.85,188.13951l17.25,-226.75723c-37.6,-14.78976 -24.1,20.99992 -24.1,20.99992l0,0.00001z" clip-path="url(#egg-mask)" />
-                </svg>
-                <div class="batter-in-blender">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164 154">
-                        <defs>
-                            <clippath id="pot-mask">
-                                <rect id="blenderFill" x="0" y="140" width="200" height="400" />
-                            </clippath>
-                        </defs>
-                        <path stroke="null" clip-path="url(#pot-mask)" d="m114,129l-61.5,0c-6.6,0 -12,-7.90986 -12,-17.57747l0,-68.84506c0,-9.66761 5.4,-17.57747 12,-17.57747l61.5,0c6.6,0 12,7.90986 12,17.57747l0,68.84506c0,9.66761 -5.4,17.57747 -12,17.57747z" fill="#FFCC00"/>
-                    </svg>
+    <div class="overflow">
+        <div class="scenes">
+            <div class="items">
+                <div class="egg"></div>
+                <div class="egg-2 hide"></div>
                 </div>
-            </div>
-            <div class="flour"></div>
-            <div class="sugar"></div>
-            <div class="fill-blender"></div>
-            <div class="blender"><div class="handle"></div></div>
-            <div class="grounded hide">
-                <span class="batter batter-1"></span><span class="batter batter-2"></span>
-                <span class="batter batter-3"></span><span class="batter batter-4"></span>
-                <span class="batter batter-5"></span><span class="batter batter-6"></span>
-                <span class="batter batter-7"></span>
-            </div>
-        </div>
-        <section class="scene scene-1">
-            <svg id="hat"><path d="M77.5,92.2v5.1c0,1.3-1.1,2.4-2.4,2.4H24.9c-1.3,0-2.4-1.1-2.4-2.4v-5.1H77.5z M75.1,13.9 c-1.1,0-2.2,0.1-3.4,0.2C67.6,6.1,59.3,1,50,1S32.4,6.1,28.3,14.1c-1.1-0.2-2.2-0.2-3.4-0.2c-13.4,0-24.3,10.7-24.3,23.8 c0,12.3,9.6,22.5,21.9,23.7v26h7V62.9c0-1.3,1.1-2.4,2.4-2.4s2.4,1.1,2.4,2.4v24.6h13.2V62.9c0-1.3,1.1-2.4,2.4-2.4 c1.3,0,2.4,1.1,2.4,2.4v24.6h13.2V62.9c0-1.3,1.1-2.4,2.4-2.4c1.3,0,2.4,1.1,2.4,2.4v24.6h7v-26c12.3-1.2,21.9-11.4,21.9-23.7 C99.4,24.6,88.5,13.9,75.1,13.9z"/></svg>
-            <div class="text">
-                <p class="intro">
-                    <span class="intro1">AMAN TANRIM!!!</span>
-                    <span class="intro1" >Bugün senin <b>Doğum Günün!</b></span>
-                    <span class="intro2" >Şef şapkamı </span>
-                    <span class="intro2" >takma zamanı!</span>
-                </p>
-                <p class="small-text">
-                    <span>Pasta pişirme</span>
-                    <span>yolculuğumu izle.</span>
-                </p>
-            </div>
-            <div class="egg-stop"></div>
-            <div class="text text-bottom fade">
-                <p><span>Görev #1</span></p>
-                <p>Yumurtayı şeker ve unla karıştır</p>
-            </div>
-            <div class="beat-egg"></div>
-        </section>
-        <section class="scene scene-2">
-            <div class="text">
-                <p>Görev #2</p>
-                <p>Hamuru kalıba dökme vakti</p>
-            </div>
-        </section>
-    </div>
-
-    <div class="scenes">
-        <div class="items">
-            <div class="pan-wrapper">
-                <div class="pan"><div class="foreground"></div><div class="background"></div></div>
-                <div class="pan-with-batter hide"><div class="foreground"></div></div>
-            </div>
-            <div class="oven"></div>
-            <div class="oven-with-pan hide"><div class="the-oven"></div></div>
-            <div class="start-pouring"></div>
-        </div>
-        <section class="scene scene-3">
-            <div class="text" style="color:black;">
-                <p>Görev #3</p>
-                <p>Pişirme Vakti!</p>
-            </div>
-        </section>
-        <section class="scene scene-4"></section>
-    </div>
-
-    <div class="scenes">
-        <div class="items">
-            <div class="cake-container">
-                <div class="cake hide">
-                    <div class="inside"></div>
-                    <div class="candle"></div>
+            
+            <section class="scene scene-1">
+                <div class="text">
+                    <p class="intro">
+                        <span class="intro1">OMG!!!</span><br>
+                        <span class="intro1">It's your <b>Birthday!</b></span>
+                    </p>
                 </div>
+            </section>
+            
             </div>
-            <div class="scene-4-text">
-                <p>Görev #4</p>
-                <p>Hadi biraz krema ekleyelim!</p>
-            </div>
-        </div>
-        <section class="scene scene-5">
-            <div class="text" style="color:black;">
-                <p>Neredeyse hazır!!!</p>
-            </div>
-        </section>
-        <section class="scene scene-6">
-            <div><p id="date"></p></div>
-            <div><p class="hbd hide">İYİ Kİ DOĞDUN!</p></div>
-            <div class="text">
-                <p>Bunu nasıl yaptığımı öğrenmek ister misin? Bana bir e-posta gönder!</p>
-                <button class="SendEmail">Hadi konuşalım!</button>
-            </div>
-        </section>
     </div>
-</div>
 
+    <script src="http://asmitashinde.com/projects/js/birthday/ScrollMagic.js"></script>
+    <script src="http://asmitashinde.com/projects/js/birthday/birthday.js"></script>
+
+    <script>
+        // Tarihi otomatik güncellemek için:
+        const d = new Date();
+        if(document.getElementById('date')) {
+            document.getElementById('date').innerHTML = d.getDate() + "/" + (d.getMonth()+1);
+        }
+    </script>
 </body>
 </html>
