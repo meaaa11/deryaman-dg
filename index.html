@@ -2,117 +2,158 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>İyi ki Doğdun Deryaman!</title>
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İyi ki Doğdun Deryaman! 🎂</title>
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
     <style>
-        /* --- GENEL STİLLER --- */
-        body { background-color: #f7e4ed; margin: 0; overflow: hidden; font-family: 'Raleway', sans-serif; }
-        .container { width: 100%; height: 100vh; display: flex; justify-content: center; align-items: center; position: relative; }
-
-        /* --- EDUARDO MORENO: PASTA VE MUMLAR --- */
-        .cake { position: relative; width: 250px; height: 200px; z-index: 10; cursor: pointer; transition: all 1s ease; }
-        .plate { width: 270px; height: 110px; position: absolute; bottom: -10px; left: -10px; background-color: #ccc; border-radius: 50%; box-shadow: 0 5px 40px rgba(0,0,0,0.3); }
-        .layer { position: absolute; width: 250px; height: 100px; border-radius: 50%; background-color: #553c13; }
-        .layer-top { top: 0px; } .layer-middle { top: 33px; } .layer-bottom { top: 66px; }
-        .icing { top: 2px; left: 5px; background-color: #f0e4d0; width: 240px; height: 90px; border-radius: 50%; position: absolute; z-index: 1; }
-        .drip { display: block; width: 50px; height: 60px; border-bottom-left-radius: 25px; border-bottom-right-radius: 25px; background-color: #f0e4d0; position: absolute; }
-        .drip1 { top: 53px; left: 5px; transform: skewY(15deg); width: 40px; }
-        .drip2 { top: 69px; left: 181px; transform: skewY(-15deg); }
-        .drip3 { top: 54px; left: 90px; width: 80px; }
-
-        .candle { background-color: #7B5292; width: 16px; height: 50px; border-radius: 8px / 4px; position: absolute; z-index: 10; }
-        .flame { position: absolute; background-color: orange; width: 15px; height: 35px; border-radius: 50% 50% 20% 20%; top: -34px; left: 50%; margin-left: -7.5px; animation: flicker 1s infinite; }
-        @keyframes flicker { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1) rotate(2deg); } }
-
-        /* --- ELIZABETH RUDAYA: KALPLİ KEDİ --- */
-        #cat-wrapper {
-            position: absolute;
-            top: -220px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: none; /* Başlangıçta gizli, tıklayınca çıkacak */
-        }
-        .cat { position: relative; width: 150px; height: 110px; background: #e0e0e0; border-radius: 100px 100px 60px 60px; border: 4px solid #333; }
-        .cat:after { content: '❤️'; position: absolute; top: -45px; left: 40%; font-size: 35px; animation: heartBeat 0.8s infinite alternate; }
-        .eye { width: 10px; height: 10px; background: #333; border-radius: 50%; position: absolute; top: 40px; }
-        .eye-l { left: 40px; } .eye-r { right: 40px; }
-        .ear { width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-bottom: 30px solid #e0e0e0; position: absolute; top: -20px; }
-        .ear-l { left: 10px; transform: rotate(-15deg); } .ear-r { right: 10px; transform: rotate(15deg); }
-        @keyframes heartBeat { to { transform: scale(1.3); } }
-
-        /* --- METİN VE SURPRIZ --- */
-        .text-box { position: absolute; bottom: 5%; text-align: center; width: 100%; opacity: 0; transition: all 1s ease; }
-        .text-box.show { opacity: 1; bottom: 15%; }
-        .main-title { font-family: 'Pacifico', cursive; font-size: 4rem; color: #ad1457; margin: 0; }
+        /* --- 1. CSS: EDUARDO MORENO (TASARIM VE ARKA PLAN) --- */
+        html, body { height: 100%; font-family: "Kaushan Script", cursive; margin: 0; padding: 0; overflow: hidden; }
+        body { background: #190e14; background-image: radial-gradient(circle at center bottom, #e9b64b, #c76075 15%, #0d0d4b 75%, #190e14 90%); }
         
-        #video-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        canvas#canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+        div#beach { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url(https://dl.dropbox.com/s/oe0oce2udq44bj5/beachsil2.png); background-position: bottom right; background-size: 1700px; background-repeat: no-repeat; z-index: 2; }
+        div#sea { background-color: blue; height: 85px; position: absolute; bottom: 0; left: 0; width: 100%; background-image: radial-gradient(circle at center top, #23485a, #0d0246); z-index: 3; }
+        #people { position: absolute; bottom: 65px; left: 40px; width: 140px; z-index: 4; }
+
+        .merrywrap { position: absolute; inset: 0; background-color: #d44; transition: background-color 0.5s ease; z-index: 100; }
+        .giftbox { position: absolute; width: 300px; height: 200px; left: 50%; margin-left: -150px; bottom: 40px; z-index: 10; cursor: pointer; }
+        .giftbox > div { background: #34495e; position: absolute; }
+        .giftbox:after { position: absolute; color: #fff; width: 100%; content: "Tıkla Bana!"; left: 0; bottom: 0; font-size: 24px; text-align: center; transform: rotate(-20deg); transform-origin: 0 0; }
+        .giftbox .cover { width: 100%; height: 25%; z-index: 2; }
+        .giftbox .cover:before { content: ""; position: absolute; height: 100%; left: 50%; width: 50px; transform: translateX(-50%); background: #fdc56d; }
+        .giftbox .box { inset: 0 5% 0 5%; height: 80%; bottom: 0; }
+        .giftbox .box:before { content: ""; position: absolute; width: 50px; height: 100%; left: 50%; transform: translateX(-50%); background: #fdc56d; }
+
+        /* Yazı Row Ayarları (İyi ki Doğdun Deryaman) */
+        .icons { position: absolute; left: 50%; top: 30%; transform: translateX(-50%) rotate(-5deg); text-align: center; width: 100%; }
+        .icons .row span { color: #e5e5e5; text-shadow: 4px 4px 0 rgba(96, 125, 139, 0.4); font-size: 60px; display: inline-block; opacity: 0; transition: transform 0.5s, opacity 0.7s; }
+
+        /* --- 2. CSS: ELIZABETH RUDAYA (KEDİ) --- */
+        #cat-reveal { display: none; position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); z-index: 50; }
+        .cat-box { height: 120px; width: 200px; background-color: #ffff9d; position: relative; background-image: radial-gradient(#f7dd5e 5px, transparent 5px); background-size: 35px 35px; }
+        .cat { position: relative; bottom: 60px; left: 40px; z-index: -1; }
+        .face { height: 140px; width: 120px; background-color: white; border-radius: 50%; }
+        .lower { height: 40px; width: 140px; background-color: white; border-radius: 0 0 140px 140px; position: relative; top: 60px; right: 10px; }
+        .ear-1, .ear-2 { height: 0; width: 0; position: absolute; border-bottom: 35px solid white; border-left: 18px solid transparent; border-right: 18px solid transparent; }
+        .ear-1 { top: -20px; left: 10px; transform: rotate(-40deg); }
+        .ear-2 { top: -20px; right: 10px; transform: rotate(40deg); }
+        .eye { background-color: lightseagreen; height: 15px; width: 15px; border-radius: 50%; animation: blink 2s infinite; position: absolute; top: 50px; }
+        @keyframes blink { 20% { transform: scaleY(0); } }
+        .hat { height: 0; width: 0; border-bottom: 80px solid #ff6347; border-left: 25px solid transparent; border-right: 25px solid transparent; position: absolute; top: -90px; left: 35px; transform: rotate(10deg); }
+
+        /* Animasyon Basamakları */
+        .step-1 .giftbox { animation: wobble 0.5s infinite; }
+        .step-2 .cover { animation: flyUp 0.4s forwards; }
+        .step-2 .box { animation: flyDown 0.2s forwards; }
+        .step-3 .giftbox, .step-4 .giftbox { opacity: 0; }
+        .step-3 .icons span, .step-4 .icons span { opacity: 1; animation: neon 0.08s infinite alternate; }
+
+        @keyframes wobble { 25% { transform: rotate(4deg); } 75% { transform: rotate(-2deg); } }
+        @keyframes flyUp { 100% { transform: translateY(-1000px) rotate(20deg); opacity: 0; } }
+        @keyframes flyDown { 100% { transform: translateY(100%); opacity: 0; } }
+        @keyframes neon { from { text-shadow: 0 0 10px #fff, 0 0 20px #1e84f2; } to { text-shadow: 0 0 15px #fff, 0 0 30px #1e84f2; } }
+
+        .moon { position: absolute; top: 10%; right: 10%; width: 80px; height: 80px; border-radius: 50%; background: #ddd; box-shadow: inset 15px -8px 0 0 #b9b9b9; z-index: 1; }
+        
+        /* Video Gizleme */
+        #video { position: absolute; visibility: hidden; width: 0; height: 0; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div id="video-background"></div>
+    <div class='moon'></div>
+    <canvas id="canvas"></canvas>
+    <div id="beach"></div>
+    <div id="sea"></div>
+    <img src="https://dl.dropbox.com/s/2k0mtrxc2dqurmh/jumping.png" alt="jumping-people" id="people" />
 
-        <div class="cake" id="cake-trigger">
-            <div id="cat-wrapper">
-                <div class="cat">
-                    <div class="ear ear-l"></div>
-                    <div class="ear ear-r"></div>
-                    <div class="eye eye-l"></div>
-                    <div class="eye eye-r"></div>
-                </div>
-            </div>
-
-            <div class="plate"></div>
-            <div class="layer layer-bottom"></div>
-            <div class="layer layer-middle"></div>
-            <div class="layer layer-top"></div>
-            <div class="icing"></div>
-            <div class="drip drip1"></div>
-            <div class="drip drip2"></div>
-            <div class="drip drip3"></div>
-            
-            <div class="candle" style="left: 20%; top: -20px;"><div class="flame"></div></div>
-            <div class="candle" style="left: 50%; top: -40px;"><div class="flame"></div></div>
-            <div class="candle" style="left: 80%; top: -20px;"><div class="flame"></div></div>
+    <div id="merrywrap" class="merrywrap">
+        <div class="giftbox">
+            <div class="cover"><div></div></div>
+            <div class="box"></div>
         </div>
-
-        <div class="text-box" id="msg-box">
-            <h1 class="main-title">İyi ki Doğdun Deryaman!</h1>
-            <p style="font-size: 1.5rem; color: #d81b60;">Gülüşün dünyayı aydınlatsın... ❤️</p>
+        <div class="icons">
+            <div class="row"> <span>İ</span><span>y</span><span>i</span><span> </span><span>k</span><span>i</span> </div>
+            <div class="row"> <span>D</span><span>o</span><span>ğ</span><span>d</span><span>u</span><span>n</span> </div>
+            <div class="row"> <span>D</span><span>e</span><span>r</span><span>y</span><span>a</span><span>m</span><span>a</span><span>n</span> </div>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://www.youtube.com/iframe_api"></script>
+    <div id="cat-reveal">
+        <div class="cat-box">
+            <div class="cat">
+                <div class="face">
+                    <div class="lower"></div>
+                    <div class="ear-1"></div>
+                    <div class="ear-2"></div>
+                    <div class="eye" style="left: 25px;"></div>
+                    <div class="eye" style="right: 25px;"></div>
+                    <div class="hat"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="video"></div>
 
     <script>
-        var player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('video-background', {
-                videoId: 'fLexgOxsZu0', // BURAYI DEĞİŞTİR: YouTube video ID'si
-                playerVars: {
-                    'autoplay': 1, 'controls': 0, 'showinfo': 0, 'modestbranding': 1,
-                    'loop': 1, 'playlist': 'fLexgOxsZu0', 'fs': 0, 'autohide': 0
-                },
-                events: { 'onReady': onPlayerReady }
+        // --- 3. JS: EDUARDO MORENO (HAVAI FISEK MOTORU) ---
+        var canvas = document.getElementById('canvas'), ctx = canvas.getContext('2d'), cw = window.innerWidth, ch = window.innerHeight, fireworks = [], particles = [], hue = 120;
+        canvas.width = cw; canvas.height = ch;
+        function random(min, max) { return Math.random() * (max - min) + min; }
+
+        function Firework(sx, sy, tx, ty) {
+            this.x = sx; this.y = sy; this.tx = tx; this.ty = ty;
+            this.distanceToTarget = Math.sqrt(Math.pow(sx - tx, 2) + Math.pow(sy - ty, 2));
+            this.distanceTraveled = 0; this.coordinates = [[sx, sy]]; this.angle = Math.atan2(ty - sy, tx - sx); this.speed = 2; this.acceleration = 1.05; this.brightness = random(50, 70);
+        }
+        Firework.prototype.update = function(index) {
+            this.speed *= this.acceleration;
+            var vx = Math.cos(this.angle) * this.speed, vy = Math.sin(this.angle) * this.speed;
+            this.x += vx; this.y += vy;
+            if (this.speed > 15) { fireworks.splice(index, 1); createParticles(this.tx, this.ty); }
+        };
+        Firework.prototype.draw = function() { ctx.beginPath(); ctx.moveTo(this.x, this.y); ctx.lineTo(this.x, this.y); ctx.strokeStyle = 'hsl(' + hue + ', 100%, ' + this.brightness + '%)'; ctx.stroke(); };
+
+        function createParticles(x, y) { var count = 30; while(count--) { particles.push({x:x, y:y, angle:random(0, Math.PI*2), speed:random(1,10), friction:0.95, gravity:1, hue:random(hue-20, hue+20), alpha:1, decay:random(0.015, 0.03)}); } }
+
+        function loop() {
+            requestAnimationFrame(loop); hue += 0.5;
+            ctx.globalCompositeOperation = 'destination-out'; ctx.fillStyle = 'rgba(0, 0, 0, 0.5)'; ctx.fillRect(0, 0, cw, ch);
+            ctx.globalCompositeOperation = 'lighter';
+            fireworks.forEach((f, i) => { f.draw(); f.update(i); });
+            particles.forEach((p, i) => {
+                p.speed *= p.friction; p.x += Math.cos(p.angle) * p.speed; p.y += Math.sin(p.angle) * p.speed + p.gravity; p.alpha -= p.decay;
+                if(p.alpha <= p.decay) particles.splice(i, 1);
+                ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p.x, p.y); ctx.strokeStyle = 'hsla('+p.hue+', 100%, 50%, '+p.alpha+')'; ctx.stroke();
             });
+            if (random(0, 100) < 5) fireworks.push(new Firework(cw/2, ch, random(0, cw), random(0, ch/2)));
         }
 
-        function onPlayerReady(event) {
-            event.target.mute();
-            event.target.playVideo();
-        }
+        window.onload = function() {
+            var box = document.querySelector(".giftbox");
+            var step = 1;
+            box.addEventListener("click", function() {
+                if (step === 1) {
+                    document.getElementById("merrywrap").className = 'merrywrap step-1';
+                    setTimeout(() => { document.getElementById("merrywrap").className = 'merrywrap step-2'; }, 2000);
+                    setTimeout(() => { document.getElementById("merrywrap").className = 'merrywrap step-3'; reveal(); }, 4000);
+                    step++;
+                }
+            });
+        };
 
-        // Tıklama Etkileşimi
-        $('#cake-trigger').click(function() {
-            $(this).css('transform', 'translateY(50px) scale(0.9)');
-            $('#cat-wrapper').fadeIn(1000); 
-            $('#msg-box').addClass('show');
-            player.unMute(); // Müzik başlar
-        });
+        function reveal() {
+            document.querySelector('.merrywrap').style.backgroundColor = 'transparent';
+            document.getElementById('cat-reveal').style.display = 'block';
+            loop();
+            
+            // Yeni Şarkı Entegrasyonu (mpohX_R0f2I)
+            var ifrm = document.createElement("iframe");
+            ifrm.setAttribute("src", "https://www.youtube.com/embed/mpohX_R0f2I?controls=0&loop=1&autoplay=1");
+            ifrm.style.border = 'none';
+            document.querySelector('#video').appendChild(ifrm);
+        }
     </script>
 </body>
 </html>
